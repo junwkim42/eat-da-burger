@@ -23,10 +23,10 @@ router.post("/api/burgers", function(req,res){
 });
 
 router.put("/api/burgers/:id", function(req,res){
-    var colVar = "devoured = " + req.body.devoured;
+    var colVar = "devoured = true";
     var condition = "id = " + req.params.id;
     burger.updateOne(colVar, condition, function(response){
-        if (result.changedRows == 0) {
+        if (response.changedRows == 0) {
             // If no rows were changed, then the ID must not exist, so 404
             return res.status(404).end();
           } else {
@@ -34,3 +34,5 @@ router.put("/api/burgers/:id", function(req,res){
         }
     });
 });
+
+module.exports = router;
